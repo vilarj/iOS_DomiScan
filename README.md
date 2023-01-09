@@ -1,4 +1,4 @@
-iOS version of DomiSCan (original DomiScan below)
+# iOS version of DomiSCan (original DomiScan below)
 
 # Content:
 
