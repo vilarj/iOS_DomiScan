@@ -1,13 +1,8 @@
-//
-//  ViewController.swift
-//  DomiScan
-//
-//  Created by Carlos Daniel Vilar Jimenez on 1/7/23.
-//
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate,
+	UINavigationControllerDelegate {
 
 	
 	@IBOutlet var header: UILabel! // DomiScan
@@ -32,13 +27,28 @@ class ViewController: UIViewController {
 	
 	@IBOutlet var right_add_50: UITextField!
 	
+	@IBOutlet weak var imagePicked: UIImageView!
+	
 	@IBAction func camera(_ sender: Any) {
-		
+		if  UIImagePickerController.isSourceTypeAvailable(.camera) {
+			var imagePicker = UIImagePickerController()
+			imagePicker.delegate = self
+			imagePicker.sourceType = .camera;
+			imagePicker.allowsEditing = false
+			self.present(imagePicker, animated: true, completion: nil)
+		}
+	}
+	
+	func remove_editable() {
+		left_auto_assign.isUserInteractionEnabled = false
+		right_auto_assign.isUserInteractionEnabled = false
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+		
+		remove_editable()
+		addScore(score: left_score_box, player: player1)
 	}
 
 	/**
@@ -52,8 +62,8 @@ class ViewController: UIViewController {
 	@return:
 	 None
 	*/
-	func addScore() {
-		
+	func addScore(score: UITextView!, player: UITextField!) {
+		left_auto_assign.text = score.text
 	}
 }
 
